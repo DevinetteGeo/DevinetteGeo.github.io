@@ -1,1 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <style>
+  
+  /*Voici le code pour le titre*/
+    h1 {
+      text-align: center;
+      font-family: "Palatino";
+      font-size: 50px;
+      color: Black;
+    }
+  
+  /*Ceci est le code pour l'image de fond*/
+    body {
+      background-image: url("https://www.bcrobyn.com/wp-content/uploads/2012/12/world.png");
+    }
 
+  /*Ceci est le code pour les boîtes*/
+    .box-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+  /*Voici le code pour le contenu des boîtes*/
+    .level-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 200px;
+      height: 120px;
+      background: #A8DADC;
+      border: 2px solid #333;
+      border-radius: 10px;
+      font-family: "Palatino";
+      font-size: 1.2em;
+      color: Black;
+      text-decoration: none;
+    }
+
+  /*Voici le code pour assurer que le texte soit centré*/
+    .level-box span {
+      display: block;
+      text-align: center;
+      width: 100%;
+      text-decoration: none; 
+    }
+
+    .level-box:hover {
+
+    }
+
+  /*Voici le code pour assurer que le boutton du tutoriel soit à la gauche au bas de la page*/
+    .tutoriel-btn {
+      position: fixed;
+      left: 20px;
+      bottom: 20px;
+    }
+    
+  </style>
+</head>
+<body>
+  <h1>DevinetteGéo</h1>
+  
+ <!--Voici le code pour les boîtes-->
+ 
+  <div class="box-container">
+    <a href="Facile.html" class="level-box">
+      <img src="https://cdn.pixabay.com/photo/2013/07/12/14/10/pushpin-147918_1280.png" class="pin-img" alt="Pin">
+      <span>Facile</span>
+    </a>
+    <a href="Intermédiat.html" class="level-box">
+      <img src="https://cdn.pixabay.com/photo/2013/07/12/14/10/pushpin-147918_1280.png" class="pin-img" alt="Pin">
+      <span>Intermédiat</span>
+    </a>
+    <a href="Difficile.html" class="level-box">
+      <img src="https://cdn.pixabay.com/photo/2013/07/12/14/10/pushpin-147918_1280.png" class="pin-img" alt="Pin">
+      <span>Difficile</span>
+    </a>
+  </div>
+
+  <!-- Tutoriel button fixed at bottom left -->
+  <a href="Tutoriel.html" class="tutoriel-btn">
+    <img src="https://pngtree.com/freepng/question-mark-speech-bubble-dialog-cartoon-hand-drawn-illustration_3945673.html" width="50" height="50" alt="Tutoriel">
+  </a>
+</body>
+</html>
