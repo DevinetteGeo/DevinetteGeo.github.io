@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>DevinetteGéo - Intermediate</title>
+  <title>DevinetteGéo - Intermédiaire</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -50,31 +50,31 @@
 </head>
 <body>
 
-  <h1>🌍 DevinetteGéo - Intermediate</h1>
+  <h1>🌍 DevinetteGéo - Niveau Intermédiaire</h1>
   <div class="question-box" id="game-box">
-    <!-- Le contenu du jeu apparaît ici -->
+    <!-- Le contenu du jeu apparaîtra ici -->
   </div>
 
   <script>
     const questions = [
       {
         image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Eiffel_Tower%2C_Paris_15_August_2014.jpg/640px-Eiffel_Tower%2C_Paris_15_August_2014.jpg",
-        prompt: "Where is this country?",
+        prompt: "Dans quel pays sommes-nous ?",
         answer: "france"
       },
       {
         image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Sydney_Opera_House_-_Dec_2008.jpg/640px-Sydney_Opera_House_-_Dec_2008.jpg",
-        prompt: "Where is this country?",
+        prompt: "Dans quel pays sommes-nous ?",
         answer: "australie"
       },
       {
         image: "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Tokyo_Montage_2015.jpg/640px-Tokyo_Montage_2015.jpg",
-        prompt: "What is the capital of this country?",
+        prompt: "Quelle est la capitale de ce pays ?",
         answer: "tokyo"
       },
       {
         image: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Berlin_Brandenburg_Gate_Night.jpg/640px-Berlin_Brandenburg_Gate_Night.jpg",
-        prompt: "What is the capital of this country?",
+        prompt: "Quelle est la capitale de ce pays ?",
         answer: "berlin"
       }
     ];
@@ -86,12 +86,21 @@
     function showQuestion() {
       const q = questions[currentIndex];
       gameBox.innerHTML = `
-        <img src="${q.image}" alt="Question image" />
+        <img src="${q.image}" alt="Image de la question" />
         <h2>${q.prompt}</h2>
-        <input type="text" id="user-answer" placeholder="Type your answer here" />
+        <input type="text" id="user-answer" placeholder="Écris ta réponse ici" />
         <br />
-        <button onclick="submitAnswer()">Submit</button>
+        <button onclick="submitAnswer()">Soumettre</button>
       `;
+
+      const inputField = document.getElementById("user-answer");
+      inputField.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+          submitAnswer();
+        }
+      });
+
+      inputField.focus();
     }
 
     function submitAnswer() {
@@ -102,11 +111,11 @@
       if (isCorrect) score++;
 
       gameBox.innerHTML = `
-        <h2>${isCorrect ? "✅ Correct!" : "❌ Incorrect"}</h2>
-        <p>Your answer: <strong>${input || "No answer"}</strong></p>
-        <p>Correct answer: <strong>${correctAnswer}</strong></p>
+        <h2>${isCorrect ? "✅ Correct !" : "❌ Incorrect"}</h2>
+        <p>Ta réponse : <strong>${input || "Aucune réponse"}</strong></p>
+        <p>Bonne réponse : <strong>${correctAnswer}</strong></p>
         <br />
-        <button onclick="nextQuestion()">Next Question</button>
+        <button onclick="nextQuestion()">Question suivante</button>
       `;
     }
 
@@ -116,11 +125,11 @@
         showQuestion();
       } else {
         gameBox.innerHTML = `
-          <h2>🎉 Game Over!</h2>
-          <p>You scored <strong>${score}</strong> out of <strong>${questions.length}</strong>.</p>
-          <p>${score === questions.length ? "🏆 Perfect score!" : score >= 2 ? "👏 Nice job!" : "💪 Keep practicing!"}</p>
+          <h2>🎉 Fin du jeu !</h2>
+          <p>Tu as obtenu <strong>${score}</strong> sur <strong>${questions.length}</strong>.</p>
+          <p>${score === questions.length ? "🏆 Score parfait !" : score >= 2 ? "👏 Bien joué !" : "💪 Continue à t'entraîner !"}</p>
           <br />
-          <button onclick="restartGame()">Play Again</button>
+          <button onclick="restartGame()">Rejouer</button>
         `;
       }
     }
@@ -131,7 +140,7 @@
       showQuestion();
     }
 
-    // Start the game
+    // Démarrer le jeu
     showQuestion();
   </script>
 
