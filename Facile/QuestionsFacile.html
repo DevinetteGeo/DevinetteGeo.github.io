@@ -62,6 +62,7 @@
       background-color: #0056b3;
     }
 
+    /*Style pour les messages de feedback (bonne/mauvaise réponse).*/
     .feedback {
       margin-top: 15px;
       font-weight: bold;
@@ -72,10 +73,10 @@
 
   <h1>🌍 DevinetteGéo - Niveau Facile</h1>
   <div class="question-box" id="game-box">
-    <!-- Le contenu du jeu apparaîtra ici -->
+    <!-- La place où apparaîtera le code du jeu -->
   </div>
 
-  <!-- Code en JavaScript pour les 4 questions. Chaque question est programmer pour apparaître un après l'autre pour ne pas devoir utiliser plusieurs pages par question -->
+  <!-- Code en JavaScript pour les 4 questions, les images et les réponses attendues. Chaque question est programmer pour apparaître un après l'autre pour ne pas devoir utiliser plusieurs pages par question -->
   <script>
     const questions = [
       {
@@ -101,11 +102,11 @@
     ];
     
     /* Code pour les points */
-    let currentIndex = 0;
-    let score = 0;
-    const gameBox = document.getElementById("game-box");
+    let currentIndex = 0; // Index de la question courante
+    let score = 0; // Score du joueur
+    const gameBox = document.getElementById("game-box"); // Élément où afficher le jeu
     
-    /*Code pour la question qui appraît et pour ensuite soumettre*/
+    /*Code pour la question courante qui appraît et pour ensuite soumettre*/
     function showQuestion() {
       const q = questions[currentIndex];
       gameBox.innerHTML = `
@@ -116,6 +117,7 @@
         <button onclick="submitAnswer()">Soumettre</button>
       `;
 
+      /*Code qui permet l'utilisateur de valider la réponse avec la touche "Entrée" */
       const inputField = document.getElementById("user-answer");
       inputField.addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
@@ -123,16 +125,18 @@
         }
       });
 
-      inputField.focus();
+      inputField.focus(); // Place le curseur dans le champ de saisie
     }
 
+    /*Code qui vérifie la réponse de l'utilisateur et affiche le résultat*/
     function submitAnswer() {
       const input = document.getElementById("user-answer").value.trim().toLowerCase();
       const correctAnswer = questions[currentIndex].answer;
       const isCorrect = input === correctAnswer;
 
-      if (isCorrect) score++;
+      if (isCorrect) score++; // Augmente le score si la réponse est correct
 
+      /*Affiche le feedback et un bouton pour passer à la question suivante*/
       gameBox.innerHTML = `
         <h2>${isCorrect ? "✅ Correct !" : "❌ Incorrect"}</h2>
         <p>Ta réponse : <strong>${input || "Aucune réponse"}</strong></p>
@@ -142,23 +146,27 @@
       `;
     }
 
+    /*Passe à la prochaine question ou affiche le score final*/
     function nextQuestion() {
       currentIndex++;
       if (currentIndex < questions.length) {
         showQuestion();
-      } else {
+      } 
+      /*Affiche le résultat final et un bouton pour recommencer ou aller au prochain niveau*/
+      else {
         gameBox.innerHTML = `
           <h2>🎉 Fin du jeu !</h2>
           <p>Tu as obtenu <strong>${score}</strong> sur <strong>${questions.length}</strong>.</p>
           <p>${score === questions.length ? "🏆 Score parfait !" : score >= 2 ? "👏 Bien joué !" : "💪 Continue à t'entraîner !"}</p>
           <br />
-          <button onclick="restartGame()">Rejouer</button>
+          <button onclick="recommencerJeu()">Rejouer</button>
           <button onclick="prochainNiveau()">Prochain Niveau</button>
         `;
       }
     }
 
-    function restartGame() {
+    /*Pour recommencer le niveau*/
+    function recommencerJeu() {
       currentIndex = 0;
       score = 0;
       showQuestion();
@@ -168,7 +176,7 @@
       <a href="Intermédiat/QuestionsIntermédiat.html"></a>
     }
 
-    // Démarrer le jeu
+    /*Démarrer le jeu*/
     showQuestion();
   </script>
 
