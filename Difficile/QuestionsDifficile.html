@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevinetteGéo - Difficile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://img.freepik.com/premium-photo/acrylic-brush-stroke-background-light-gray-wallpaper-image_198067-218159.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 20px;
+      text-align: center;
+      color: #000;
+    }
+
+    /* Code pour la boîte de question */
+    .question-box {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 70%;
+    }
+    
+    /* Code créer le bouton pour soumettre */
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .feedback {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌍 DevinetteGéo - Niveau Difficile</h1>
+  <div class="question-box" id="game-box">
+    <!-- Le contenu du jeu apparaîtra ici -->
+  </div>
+
+  <!-- Code en JavaScript pour les 4 questions. Chaque question est programmer pour apparaître un après l'autre pour ne pas devoir utiliser plusieurs pages par question -->
+  <script>
+    const questions = [
+      {
+        image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Portrait_of_a_Man%2C_Said_to_be_Christopher_Columbus.jpg/1200px-Portrait_of_a_Man%2C_Said_to_be_Christopher_Columbus.jpg",
+        prompt: "Pour quel pays Christophe Colomb a-t-il navigué ? ?",
+        answer: "espagne",
+      },
+      {
+        image: "https://upload.wikimedia.org/wikipedia/commons/8/83/French_Fries.JPG",
+        prompt: "Quel est le pays d'origine de cette nourriture ?",
+        answer: "belgique"
+      },
+      {
+        image: "https://journeysbydesign.com/wp-content/uploads/2017/02/cropMount-Kilimanjaro-960x647.jpg",
+        prompt: "Dans quel pays se situe Mt Kilimanjaro ?",
+        answer: "tanzanie"
+      },
+      {
+        image: "https://www.doc.govt.nz/thumbs/hero/contentassets/a450e32f0b824531858d566404c21884/southern-brown-kiwi-tokoeka-stewart-island-photo-credit-alina-thiebes1920.jpg",
+        prompt: "Quel est le pays d'origine du kiwi (oiseau) ?",
+        answer: "nouvelle-zélande"
+      }
+    ];
+    
+    /* Code pour les points */
+    let currentIndex = 0;
+    let score = 0;
+    const gameBox = document.getElementById("game-box");
+    
+    /*Code pour la question qui appraît et pour ensuite soumettre*/
+    function showQuestion() {
+      const q = questions[currentIndex];
+      gameBox.innerHTML = `
+        <img src="${q.image}" alt="Image de la question" />
+        <h2>${q.prompt}</h2>
+        <input type="text" id="user-answer" placeholder="Écris ta réponse ici" />
+        <br />
+        <button onclick="submitAnswer()">Soumettre</button>
+      `;
+
+      const inputField = document.getElementById("user-answer");
+      inputField.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+          submitAnswer();
+        }
+      });
+
+      inputField.focus();
+    }
+
+    function submitAnswer() {
+      const input = document.getElementById("user-answer").value.trim().toLowerCase();
+      const correctAnswer = questions[currentIndex].answer;
+      const isCorrect = input === correctAnswer;
+
+      if (isCorrect) score++;
+
+      gameBox.innerHTML = `
+        <h2>${isCorrect ? "✅ Correct !" : "❌ Incorrect"}</h2>
+        <p>Ta réponse : <strong>${input || "Aucune réponse"}</strong></p>
+        <p>Bonne réponse : <strong>${correctAnswer}</strong></p>
+        <br />
+        <button onclick="nextQuestion()">Question suivante</button>
+      `;
+    }
+
+    function nextQuestion() {
+      currentIndex++;
+      if (currentIndex < questions.length) {
+        showQuestion();
+      } else {
+        gameBox.innerHTML = `
+          <h2>🎉 Fin du jeu !</h2>
+          <p>Tu as obtenu <strong>${score}</strong> sur <strong>${questions.length}</strong>.</p>
+          <p>${score === questions.length ? "🏆 Score parfait !" : score >= 2 ? "👏 Bien joué !" : "💪 Continue à t'entraîner !"}</p>
+          <br />
+          <button onclick="restartGame()">Rejouer</button>
+        `;
+      }
+    }
+
+    function restartGame() {
+      currentIndex = 0;
+      score = 0;
+      showQuestion();
+    }
+
+    // Démarrer le jeu
+    showQuestion();
+  </script>
+
+</body>
+</html>
