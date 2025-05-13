@@ -3,10 +3,6 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <!-- Lien vers la page d'accueil avec un bouton image. -->
-  <a href="/index.html">
-    <img src="images/homebtn.png" style=" width:45px; height: 45px;">
-  </a>
   <title>DevinetteGéo - Facile</title>
   <style>
     /*Styles généraux du corps de la page*/
@@ -69,8 +65,13 @@
     }
   </style>
 </head>
-<body>
 
+<body>
+  <!-- Lien vers la page d'accueil avec un bouton image. -->
+  <a href="/index.html">
+    <img src="images/homebtn.png" style=" width:45px; height: 45px;">
+  </a>
+  
   <h1>🌍 DevinetteGéo - Niveau Facile</h1>
   <div class="question-box" id="game-box">
     <!-- La place où apparaîtera le code du jeu -->
@@ -82,7 +83,7 @@
       {
         image: "https://static.vecteezy.com/system/resources/previews/003/668/496/non_2x/doodle-freehand-drawing-of-the-great-britain-map-free-vector.jpg",
         prompt: "Quel est ce pays ?",
-        answer: "royaumes-unis",
+        answer: "royaume-uni",
       },
       {
         image: "https://i.etsystatic.com/18945043/r/il/e4ca69/2049956565/il_570xN.2049956565_24ea.jpg",
@@ -173,7 +174,7 @@
     }
 
     function prochainNiveau() {
-      <a href="Intermédiat/QuestionsIntermédiat.html"></a>
+      window.location.href = "Intermédiat/QuestionsIntermédiat.html";
     }
 
     /*Démarrer le jeu*/
