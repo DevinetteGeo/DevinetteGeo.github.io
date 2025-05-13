@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>DevinetteGéo - Facile</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-image: url('https://img.freepik.com/premium-photo/school-drawing-images-background-copy-space_1179130-582802.jpg?semt=ais_hybrid&w=740');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      padding: 20px;
+      text-align: center;
+      color: #000;
+    }
+
+    /* Code pour la boîte de question */
+    .question-box {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 70%;
+    }
+    
+    /* Code créer le bouton pour soumettre */
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .feedback {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌍 DevinetteGéo - Niveau Facile</h1>
+  <div class="question-box" id="game-box">
+    <!-- Le contenu du jeu apparaîtra ici -->
+  </div>
+
+  <!-- Code en JavaScript pour les 4 questions. Chaque question est programmer pour apparaître un après l'autre pour ne pas devoir utiliser plusieurs pages par question -->
+  <script>
+    const questions = [
+      {
+        image: "https://static.vecteezy.com/system/resources/previews/003/668/496/non_2x/doodle-freehand-drawing-of-the-great-britain-map-free-vector.jpg",
+        prompt: "Quel est ce pays ?",
+        answer: "royaumes-unis",
+      },
+      {
+        image: "https://i.etsystatic.com/18945043/r/il/e4ca69/2049956565/il_570xN.2049956565_24ea.jpg",
+        prompt: "Quel est ce pays ?",
+        answer: "italie"
+      },
+      {
+        image: "https://www.fda.gov/files/china-greatwall_0.jpg",
+        prompt: "Dans quel continent situe la Chine ?",
+        answer: "asie"
+      },
+      {
+        image: "https://i.natgeofe.com/k/33e48abd-f2e7-4430-b7bf-cc9a18c14cc6/brazil-christ-the-redeemer_4x3.jpg",
+        prompt: "Dans quel continent situe le Brazil?",
+        answer: "amérique du sud"
+      }
+    ];
+    
+    /* Code pour les points */
+    let currentIndex = 0;
+    let score = 0;
+    const gameBox = document.getElementById("game-box");
+    
+    /*Code pour la question qui appraît et pour ensuite soumettre*/
+    function showQuestion() {
+      const q = questions[currentIndex];
+      gameBox.innerHTML = `
+        <img src="${q.image}" alt="Image de la question" />
+        <h2>${q.prompt}</h2>
+        <input type="text" id="user-answer" placeholder="Écris ta réponse ici" />
+        <br />
+        <button onclick="submitAnswer()">Soumettre</button>
+      `;
+
+      const inputField = document.getElementById("user-answer");
+      inputField.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+          submitAnswer();
+        }
+      });
+
+      inputField.focus();
+    }
+
+    function submitAnswer() {
+      const input = document.getElementById("user-answer").value.trim().toLowerCase();
+      const correctAnswer = questions[currentIndex].answer;
+      const isCorrect = input === correctAnswer;
+
+      if (isCorrect) score++;
+
+      gameBox.innerHTML = `
+        <h2>${isCorrect ? "✅ Correct !" : "❌ Incorrect"}</h2>
+        <p>Ta réponse : <strong>${input || "Aucune réponse"}</strong></p>
+        <p>Bonne réponse : <strong>${correctAnswer}</strong></p>
+        <br />
+        <button onclick="nextQuestion()">Question suivante</button>
+      `;
+    }
+
+    function nextQuestion() {
+      currentIndex++;
+      if (currentIndex < questions.length) {
+        showQuestion();
+      } else {
+        gameBox.innerHTML = `
+          <h2>🎉 Fin du jeu !</h2>
+          <p>Tu as obtenu <strong>${score}</strong> sur <strong>${questions.length}</strong>.</p>
+          <p>${score === questions.length ? "🏆 Score parfait !" : score >= 2 ? "👏 Bien joué !" : "💪 Continue à t'entraîner !"}</p>
+          <br />
+          <button onclick="restartGame()">Rejouer</button>
+        `;
+      }
+    }
+
+    function restartGame() {
+      currentIndex = 0;
+      score = 0;
+      showQuestion();
+    }
+
+    // Démarrer le jeu
+    showQuestion();
+  </script>
+
+</body>
+</html>
