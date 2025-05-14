@@ -17,7 +17,7 @@
     }
 
     /*Code pour la boîte de question centrale blanche*/
-    .question-box {
+    .boite-question {
       background: rgba(255, 255, 255, 0.9);
       padding: 20px;
       border-radius: 10px;
@@ -57,8 +57,8 @@
       background-color: #0056b3;
     }
 
-    /*Style pour les messages de feedback (bonne/mauvaise réponse).*/
-    .feedback {
+    /*Style pour les messages de retour (bonne/mauvaise réponse).*/
+    .retour {
       margin-top: 15px;
       font-weight: bold;
     }
@@ -68,11 +68,11 @@
 <body>
   <!-- Lien vers la page d'accueil avec un bouton image. -->
   <a href="/index.html">
-    <img src="images/homebtn.png" style=" width:45px; height: 45px;">
+    <img src="images/Accueilbtn.png" style=" width:45px; height: 45px;">
   </a>
   
   <h1>🌍 DevinetteGéo - Niveau Difficile</h1>
-  <div class="question-box" id="game-box">
+  <div class="boite-question" id="game-box">
     <!-- La place où apparaîtera le code du jeu -->
   </div>
 
@@ -102,13 +102,13 @@
     ];
     
     /* Code pour les points */
-    let currentIndex = 0; // Index de la question courante
+    let indexActuel = 0; // Index de la question courante
     let score = 0; // Score du joueur
     const gameBox = document.getElementById("game-box"); // Élément où afficher le jeu
     
     /*Code pour la question courante qui appraît et pour ensuite soumettre*/
-    function showQuestion() {
-      const q = questions[currentIndex];
+    function afficheQuestion() {
+      const q = questions[indexActuel];
       gameBox.innerHTML = `
         <img src="${q.image}" alt="Image de la question" />
         <h2>${q.prompt}</h2>
@@ -131,12 +131,12 @@
     /*Code qui vérifie la réponse de l'utilisateur et affiche le résultat*/
     function submitAnswer() {
       const input = document.getElementById("user-answer").value.trim().toLowerCase();
-      const correctAnswer = questions[currentIndex].answer;
+      const correctAnswer = questions[indexActuel].answer;
       const isCorrect = input === correctAnswer;
 
       if (isCorrect) score++; // Augmente le score si la réponse est correct
 
-      /*Affiche le feedback et un bouton pour passer à la question suivante*/
+      /*Affiche le retour et un bouton pour passer à la question suivante*/
       gameBox.innerHTML = `
         <h2>${isCorrect ? "✅ Correct !" : "❌ Incorrect"}</h2>
         <p>Ta réponse : <strong>${input || "Aucune réponse"}</strong></p>
@@ -148,9 +148,9 @@
 
     /*Passe à la prochaine question ou affiche le score final*/
     function nextQuestion() {
-      currentIndex++;
-      if (currentIndex < questions.length) {
-        showQuestion();
+      indexActuel++;
+      if (indexActuel < questions.length) {
+        afficheQuestion();
       }
       /*Affiche le résultat final et un bouton pour recommencer ou aller au prochain niveau*/
       else {
@@ -166,13 +166,13 @@
 
     /*Pour recommencer le niveau*/
     function recommencerJeu() {
-      currentIndex = 0;
+      indexActuel = 0;
       score = 0;
-      showQuestion();
+      afficheQuestion();
     }
 
     /*Démarrer le jeu*/
-    showQuestion();
+    afficheQuestion();
   </script>
 
 </body>
