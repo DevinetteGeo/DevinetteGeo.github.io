@@ -169,6 +169,8 @@
           <br />
           <button onclick="recommencerJeu()">Rejouer</button>
         `;
+          <button onclick="prochainNiveau()">Prochain Niveau</button>
+        `;
       }
     }
 
@@ -179,6 +181,10 @@
       afficheQuestion();
     }
 
+    function prochainNiveau() {
+      window.location.href = "https://devinettegeo.github.io/Difficile/QuestionsDifficile.html";
+    }
+    
     /*Démarrer le jeu*/
     afficheQuestion();
   </script>
