@@ -1,39 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>HTML + CSS</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>DevinetteGéo - A Propos de Nous</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-image: url("https://wallpapercat.com/w/full/9/8/6/257445-2000x1213-desktop-hd-global-map-wallpaper-image.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        padding: 20px;
+        text-align: center;
+        color: #000;
+      }
+
+      .boite-question {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      img {
+        width: 50%;
+        max-width: 100px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+      }
+
+      input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        width: 70%;
+      }
+
+      button {
+        padding: 10px 15px;
+        margin-top: 10px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      .retour {
+        margin-top: 15px;
+        font-weight: bold;
+      }
+
+      .accueil-btn {
+        width: 55px;
+        height: 55px;
+        position: absolute;
+        top: 20px;
+        left: 20px;
+      }
+    </style>
   </head>
   <body>
-    <h1>A propos</h1>
-    <h4>Nous sommes une équipe de 4 personnes qui crée des jeux de web.</h4>
+    <a href="/index.html">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/61/61972.png"
+        class="accueil-btn"
+        alt="Accueil"
+      />
+    </a>
 
-    <h4>Dans le jeux pour presque 10 ans, nous avons beaucoup d'experiences, et
-      avons travaillé pour les meilleurs entreprises.</h4>
+    <h1>🌍 DevinetteGéo</h1>
 
-    <h2>Racontrez notre equipe</h2>
+    <!-- Tutoriel du jeu -->
+    <div
+      class="boite-question"
+      style="margin-top: 20px; background-color: rgba(255, 255, 255, 0.8)"
+    >
+      <h2>📘 A Propos de Nous</h2>
+      <p>Nous sommes une équipe de 4 persnones qui crée des jeux de web!</p>
+      <p>
+        Dans le jeux pour presque <strong>10 ans</strong>, nous avons beaucoup
+        d'experiences, et avons travaillé pour les meilleurs entreprises.
+      </p>
 
-    <img src="images/person-icon-cliparts-15.png" width = 50/>
-    <h3>Yusef</h3>
-      <h4>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h4>
+      <h2>Racontrez notre equipe</h2>
 
-    <img src="images/person-icon-cliparts-15.png" width = 50/>
-    <h3>Alexia<h3>
-        <h4>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h4>
+      <img src="images/person-icon-cliparts-15.png" width="50" />
+      <h3>Yusef</h3>
+      <h4>
+        Passionné de code depuis l’âge de 12 ans, Yusef adore résoudre des bugs
+        impossibles et collectionner des vieilles consoles de jeux. Il est le
+        stratège silencieux de l’équipe.
+      </h4>
 
-    <img src="images/person-icon-cliparts-15.png" width = 50/>
-    <h3>Élise</h3>
-      <h4>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h4>
+      <img src="images/person-icon-cliparts-15.png" width="50" />
+      <h3>Alexia</h3>
+      <h4>
+        Créative et pleine d'idées, Alexia s’occupe du design et des histoires
+        derrière nos jeux. Elle rêve de créer un jour le jeu le plus immersif du
+        web.
+      </h4>
 
-    <img src="images/person-icon-cliparts-15.png" width = 50/>
-    <h3>Joshua</h3>
-      <h4>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</h4>
+      <img src="images/person-icon-cliparts-15.png" width="50" />
+      <h3>Elise</h3>
+      <h4>
+        Elise est la touche artistique du groupe. Graphiste et animatrice, elle
+        transforme chaque idée en visuel captivant. Elle adore les chats et le
+        chocolat noir.
+      </h4>
 
-    <h2>Nos reves et objectives pour la futur</h2>
-    <h4>Nous allons depasser Geoguessr comme le jeux de geographie la plus grande,
-      et nous allons atteindre 1b$ en la valeur d'entreprises.</h4>
+      <img src="images/person-icon-cliparts-15.png" width="50" />
+      <h3>Joshua</h3>
+      <h4>
+        Le plus technique de la bande, Joshua est le spécialiste du
+        développement backend. Quand il ne code pas, il explore les sentiers en
+        forêt et écoute du rap.
+      </h4>
+
+      <h2>Nos reves et objectives pour la futur</h2>
+      <p>
+        Nous allons depasser Geoguessr comme le jeux de geographie la plus
+        grande, et nous allons atteindre <strong>1B$</strong> en la valeur
+        d'entreprises.
+      </p>
+    </div>
+
+    <div class="boite-question" id="game-box"></div>
   </body>
 </html>
+
